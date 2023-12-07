@@ -1,31 +1,32 @@
 import * as React from 'react';
 
 import { StyleSheet, View, Text } from 'react-native';
-import { multiply } from 'react-native-reanimated-collapsible-header';
+import { CollapsibleContent, CollapsibleHeader, CollapsibleWrapper } from 'react-native-reanimated-collapsible-header';
 
 export default function App() {
-  const [result, setResult] = React.useState<number | undefined>();
-
-  React.useEffect(() => {
-    multiply(3, 7).then(setResult);
-  }, []);
-
   return (
-    <View style={styles.container}>
-      <Text>Result: {result}</Text>
-    </View>
-  );
+    <CollapsibleWrapper>
+      <CollapsibleHeader>
+        <View style={styles.header} >
+          <Text>Header</Text>
+          </View>
+      </CollapsibleHeader>
+      <CollapsibleContent>
+      <View style={styles.content} >
+        <Text>Content</Text>
+        </View>
+      </CollapsibleContent>
+    </CollapsibleWrapper>
+  )
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
+  header: {
+    height: 400,
+    backgroundColor: 'red'
   },
-  box: {
-    width: 60,
-    height: 60,
-    marginVertical: 20,
+  content: {
+    height: 1000,
+    backgroundColor: 'green'
   },
 });
